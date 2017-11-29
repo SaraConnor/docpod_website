@@ -1,0 +1,475 @@
+* {
+  color: #424242;
+  font-family: "roboto";
+}
+ul {
+  text-align: center;
+
+  li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 15px;
+    a, a:checked, a:hover, a:visited{
+      color: inherit;
+
+    }
+  }
+}
+
+.content {
+  position: relative;
+  .navigation {
+    position: fixed;
+    background: #fff;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 70px;
+    z-index: 5;
+    box-shadow: 0 2px 20px grey;
+
+    .menu-dropdown {
+      &.active {
+          display: block;
+      }
+
+      &.close {
+          display: none;
+          @include breakpoint (large) {
+              display: block;
+          }
+      }
+    }
+    .topLeftBorders {
+      background: #fff;
+      padding: 50px 0;
+      box-shadow: 0 2px 20px grey;
+      text-align: center;
+      @include breakpoint(large) {
+        text-align: center;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: inherit;
+        box-shadow: none;
+      }
+
+      a {
+        color: #424242;
+        text-decoration: none;
+        position: relative;
+        z-index: 0;
+        margin: 0 10px;
+        cursor: pointer;
+        @include breakpoint(large) {
+          margin: 0 2rem;
+          padding: 10px 10px;
+        }
+      }
+    }
+    .topLeftBorders a:before
+    {
+      @include breakpoint(large) {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 2px;
+        height: 0px;
+        background: #424242;
+        content: "";
+        opacity: 1;
+        transition: all 0.3s;
+      }
+
+    }
+
+    .topLeftBorders a:after
+    {
+      @include breakpoint(large) {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 2px;
+        background: #424242;
+        content: "";
+        opacity: 1;
+        transition: all 0.3s;
+      }
+
+    }
+
+    .topLeftBorders a:hover:before
+    {
+        height: 100%;
+    }
+
+    .topLeftBorders a:hover:after
+    {
+        opacity: 0;
+        top: 100%;
+    }
+    .burger {
+      display: block;
+          position: relative;
+          cursor: pointer;
+          width: 50px;
+          height: 50px;;
+        .burger-menu-style {
+            height: 2px;
+            width: 30px;
+            background: #424242;
+            display: block;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+
+            &:before {
+                content: "";
+                width: 30px;
+                height: 2px;
+                display: block;
+                background: #424242;
+                position: absolute;
+                top: -9px;
+            }
+
+            &:after {
+                content: "";
+                width: 30px;
+                height: 2px;
+                display: block;
+                background: #424242;
+                position: absolute;
+                top: 9px;
+            }
+        }
+    }
+  }
+  .main {
+    background: #fff;
+    height: 100%;
+    z-index: 4;
+    @include breakpoint(large) {
+      margin: 50rem 0 0 0;
+    }
+    .presentation, .schema, .team, .contact {
+      position: relative;
+      height: auto;
+      padding: 25px;
+      width: 100%;
+      padding: 50px 0;
+
+
+      h2 {
+        font-family: "roboto";
+        color: #336666;
+
+      }
+      h3 {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        font-family: "roboto";
+        text-decoration: underline;
+      }
+        &:after {
+          content: "";
+          width: 50px;
+          height: 50px;
+          position: absolute;
+          bottom: -15px;
+          left: 50%;
+          transform: rotate(45deg);
+          background: #fff;
+          display: block;
+          z-index: 4;
+          transform-origin: 0 0;
+        }
+        p {
+          font-size: 12px;
+          @include breakpoint(medium) {
+            font-size: 16px;
+          }
+        }
+    }
+    .presentation, .team {
+      h2 {
+        position: relative;
+        font-family: "roboto";
+        span {
+          font-family: "roboto";
+          color: #336666;
+        }
+      }
+    }
+    .schema, .contact {
+      h2 {
+        font-family: "roboto";
+      }
+      background: #F2F2F2;
+      &:after {
+        background: #F2F2F2;
+      }
+    }
+    .presentation {
+      .project-presentation {
+        .disclaimer {
+          max-width: 70%;
+          margin: auto;
+          padding-bottom: 40px;
+          text-align: left;
+          @include breakpoint(medium) {
+          text-align: center;
+          }
+        }
+      }
+      .items {
+        padding: 0 45px;
+          .read-more-state {
+            display: none;
+          }
+          .read-more-wrap {
+            .read-more-target {
+              opacity: 0;
+              max-height: 0;
+              font-size: 0;
+              transition: .25s ease;
+            }
+          }
+          .read-more-trigger {
+            cursor: pointer;
+            display: inline-block;
+            padding: 0 .5em;
+            color: #666;
+            font-size: .9em;
+            line-height: 2;
+            border: 1px solid #ddd;
+            border-radius: .25em;
+          }
+          .read-more-state:checked ~ .read-more-wrap .read-more-target {
+          opacity: 1;
+          font-size: inherit;
+          max-height: 999em;
+        }
+        .read-more-state ~ .read-more-trigger:before {
+          content: 'Lire la suite';
+        }
+        .read-more-state:checked ~ .read-more-trigger:before {
+          content: 'Fermer';
+        }
+
+        &.application {
+          .icon-application {
+            background: url('../img/application.png') center;
+            width: 50px;
+            height: 50px;
+            @include breakpoint(medium ) {
+              width: 100px;
+              height: 100px;
+            }
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: auto;
+            margin: 1rem auto;
+          }
+        }
+        &.podcast {
+          .icon-podcast {
+            background: url('../img/podcasting.png') center;
+            width: 50px;
+            height: 50px;
+            @include breakpoint(medium ) {
+              width: 100px;
+              height: 100px;
+            }
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: auto;
+            margin: 1rem auto;
+          }
+        }
+        &.public {
+          .icon-public {
+            background: url('../img/public.png') center;
+            width: 50px;
+            height: 50px;
+            @include breakpoint(medium ) {
+              width: 100px;
+              height: 100px;
+            }
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: auto;
+            margin: 1rem auto;
+          }
+          p{
+            text-align: left;
+            @include breakpoint(large) {
+              max-width: 70%;
+              margin: auto;
+              text-align: center;
+            }
+          }
+        }
+        &.cross-media {
+          .icon-cross-media {
+            background: url('../img/cross-media.png') center;
+            width: 50px;
+            height: 50px;
+            @include breakpoint(medium ) {
+              width: 100px;
+              height: 100px;
+            }
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: auto;
+            margin: 1rem auto;
+          }
+        }
+      }
+    }
+    .more-info {
+      width: 100%;
+      display: block;
+      text-align: center;
+      height: auto;
+    }
+    .team {
+      .icon-team {
+        width: 70px;
+        height: 70px;
+        margin: auto;
+        &.thomas {
+          background: url('../img/thomas.png') no-repeat;
+          background-size: contain;
+        }
+        &.savinien {
+          background: url('../img/savinien.png') no-repeat;
+          background-size: contain;
+        }
+        &.sarah {
+          background: url('../img/sarah.png') no-repeat;
+          background-size: contain;
+        }
+      }
+      .searching-collaborateurs, a {
+        font-family: "roboto-bold";
+      }
+      a {
+        color: inherit;
+        &:hover {
+          color: #336666;
+        }
+      }
+    }
+    .contact, .schema, .team {
+      h2 {
+        padding: 0 0 60px 0;
+       }
+      .wrapper-contact {
+        margin: auto;
+        text-align: center;
+        position: relative;
+        padding: 50px 0;
+        .contact-icon {
+          background: url('../img/contact.gif');
+          background-size: cover;
+          background-repeat: no-repeat;
+          width: 60px;
+          height: 60px;
+          margin: auto;
+          display: inline-block;
+        }
+        .click-here {
+          display: inline-block;
+          position: absolute;
+          padding-left: 60px;
+          top: 10px;
+          &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: url('../img/arrow.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            top: 0;
+            transform: rotate(-50deg);
+            top: 25px;
+          }
+        }
+      }
+    }
+    .contact {
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  .header {
+    display: block;
+    position: relative;
+    width: 100%;
+
+    .banner {
+      width: 100%;
+      height: 380px;
+      background: url('../img/banner.png') no-repeat;
+      background-size: cover;
+      background-position: center;
+
+      @include breakpoint(large) {
+        position: fixed;
+        z-index: -1;
+        // top: 70px;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 80vh;
+      }
+
+      .opacity {
+        background: rgba(242, 242, 242, 0.77);
+        text-align: center;
+        position: relative;
+        height: 380px;
+        @include breakpoint(large) {
+          height: 80vh;
+        }
+          .wrapper-docpod{
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #fff;
+        }
+        h1 {
+          font-size: 4rem;
+          text-transform: uppercase;
+          .icon-docpod {
+            width: 75px;
+            height: 51px;
+            @include breakpoint(large) {
+              width: 228px;
+              height: 157px;
+            }
+            background: url('../img/casqueoblique.png') no-repeat;
+            background-size: contain;
+            display: block;
+            margin: auto;
+          }
+        }
+        p {
+          font-size: 0.5em;
+          @include breakpoint(large) {
+            font-size: 1.75rem;
+          }
+
+        }
+      }
+    }
+  }
+
+}
